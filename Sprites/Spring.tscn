@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkvsv0tjndorr"]
+
+[ext_resource type="Script" path="res://code/tag.gd" id="1_uauai"]
+[ext_resource type="Texture2D" uid="uid://jjoltp3gcrni" path="res://Sprites/monochrome_tilemap_transparent_packed.png" id="2_dx45g"]
+[ext_resource type="Script" path="res://code/Spritesetter.gd" id="4_moavo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6f63v"]
+size = Vector2(14, 14)
+
+[node name="Spring" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dx45g")
+region_enabled = true
+region_rect = Rect2(64, 128, 16, 16)
+script = ExtResource("4_moavo")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_uauai")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("RectangleShape2D_6f63v")

@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://y45ishjmi7cr"]
+
+[ext_resource type="Script" path="res://code/player.gd" id="1_0et8x"]
+[ext_resource type="PackedScene" uid="uid://cuvurrtjcx20u" path="res://scence/hitbox.tscn" id="3_gohrk"]
+[ext_resource type="Texture2D" uid="uid://sn7urgl0ii3k" path="res://Sprites/character.png" id="4_3p0ar"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q4uyh"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpj23"]
+atlas = ExtResource("4_3p0ar")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61pmp"]
+atlas = ExtResource("4_3p0ar")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j5si"]
+atlas = ExtResource("4_3p0ar")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slnif"]
+atlas = ExtResource("4_3p0ar")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kvfg"]
+atlas = ExtResource("4_3p0ar")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2xl8"]
+atlas = ExtResource("4_3p0ar")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qd07a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpj23")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61pmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j5si")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slnif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kvfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2xl8")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_0et8x")
+metadata/_edit_group_ = true
+
+[node name="Walkbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_q4uyh")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_gohrk")]
+position = Vector2(0, 3)
+
+[node name="picker" type="RayCast2D" parent="."]
+position = Vector2(0, 3)
+target_position = Vector2(25, 0)
+collision_mask = 5
+
+[node name="timer" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_qd07a")
+animation = &"run"
+
+[node name="laderdetect" type="RayCast2D" parent="."]
+target_position = Vector2(0, -15)
+collision_mask = 8
+collide_with_areas = true
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+
+[editable path="Hitbox"]

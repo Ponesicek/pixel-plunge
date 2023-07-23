@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://cp37qoewnj2bn"]
+
+[ext_resource type="Script" path="res://code/AIWalk.gd" id="1_1q5ba"]
+[ext_resource type="Script" path="res://code/tag.gd" id="2_0lcgn"]
+[ext_resource type="Texture2D" uid="uid://jjoltp3gcrni" path="res://Sprites/monochrome_tilemap_transparent_packed.png" id="3_qusr8"]
+[ext_resource type="Script" path="res://code/killenemy.gd" id="4_84ehd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4qb2"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2384"]
+size = Vector2(10, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6c1k"]
+atlas = ExtResource("3_qusr8")
+region = Rect2(16, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdboq"]
+atlas = ExtResource("3_qusr8")
+region = Rect2(32, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bif7c"]
+atlas = ExtResource("3_qusr8")
+region = Rect2(48, 240, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_epabt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6c1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdboq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bif7c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3umg5"]
+size = Vector2(8, 14)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_1q5ba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_k4qb2")
+
+[node name="kill" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_0lcgn")
+tag = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kill"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_s2384")
+debug_color = Color(0.964706, 0, 0.482353, 0.419608)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-8, -3)
+target_position = Vector2(0, 10)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(10, -3)
+target_position = Vector2(0, 10)
+
+[node name="boxray" type="RayCast2D" parent="."]
+position = Vector2(-10, -5)
+target_position = Vector2(23, 0)
+
+[node name="boxray2" type="RayCast2D" parent="."]
+position = Vector2(12, -5)
+target_position = Vector2(-23, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_epabt")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0.5, -11.625)
+script = ExtResource("4_84ehd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 4.625)
+shape = SubResource("RectangleShape2D_3umg5")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

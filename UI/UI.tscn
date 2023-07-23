@@ -1,0 +1,136 @@
+[gd_scene load_steps=13 format=3 uid="uid://cropqnuna4qlu"]
+
+[ext_resource type="Texture2D" uid="uid://xaxem5qdyjr8" path="res://Sprites/pause.png" id="1_wbkrn"]
+[ext_resource type="Script" path="res://UI/pause.gd" id="2_1pb4h"]
+[ext_resource type="Texture2D" uid="uid://cyyoqqywqx01b" path="res://Sprites/button_mobile.png" id="3_e8bry"]
+[ext_resource type="Texture2D" uid="uid://ctnris1aofwgw" path="res://Sprites/pickupbutton.png" id="4_ecjs8"]
+[ext_resource type="Shader" path="res://UI/UI.gdshader" id="4_ehqge"]
+[ext_resource type="Material" uid="uid://bfnkqvyujakw5" path="res://UI/shader.tres" id="5_y0xjq"]
+[ext_resource type="Script" path="res://UI/time.gd" id="7_23gc8"]
+[ext_resource type="Texture2D" uid="uid://jjoltp3gcrni" path="res://Sprites/monochrome_tilemap_transparent_packed.png" id="7_hvhgm"]
+[ext_resource type="LabelSettings" uid="uid://1kc3p7bicsom" path="res://UI/Myfont.tres" id="8_bjwgt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_neebc"]
+shader = ExtResource("4_ehqge")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_osu44"]
+shader = ExtResource("4_ehqge")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hemcq"]
+shader = ExtResource("4_ehqge")
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 72.0
+icon = ExtResource("1_wbkrn")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_1pb4h")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+scale = Vector2(2.5, 2.5)
+
+[node name="Left" type="TouchScreenButton" parent="Control"]
+modulate = Color(1, 1, 1, 0.211765)
+material = SubResource("ShaderMaterial_neebc")
+position = Vector2(13, -77.6)
+scale = Vector2(4, 4)
+texture_normal = ExtResource("3_e8bry")
+passby_press = true
+action = "ui_left"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="Control"]
+modulate = Color(1, 1, 1, 0.211765)
+material = SubResource("ShaderMaterial_osu44")
+position = Vector2(145, -13.6)
+rotation = -3.14159
+scale = Vector2(4, 4)
+texture_normal = ExtResource("3_e8bry")
+passby_press = true
+action = "ui_right"
+visibility_mode = 1
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2.5, 2.5)
+
+[node name="Up" type="TouchScreenButton" parent="Control2"]
+modulate = Color(1, 1, 1, 0.211765)
+material = ExtResource("5_y0xjq")
+position = Vector2(-13, -77.6)
+rotation = 1.5708
+scale = Vector2(4, 4)
+texture_normal = ExtResource("3_e8bry")
+passby_press = true
+action = "ui_accept"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="Control2"]
+modulate = Color(1, 1, 1, 0.211765)
+material = SubResource("ShaderMaterial_hemcq")
+position = Vector2(-145, -77.6)
+scale = Vector2(4, 4)
+texture_normal = ExtResource("4_ecjs8")
+passby_press = true
+action = "ui_pickup"
+visibility_mode = 1
+
+[node name="Control3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Key" type="Sprite2D" parent="Control3"]
+visible = false
+position = Vector2(-40, 40)
+scale = Vector2(4, 4)
+texture = ExtResource("7_hvhgm")
+region_enabled = true
+region_rect = Rect2(256, 64, 16, 16)
+
+[node name="Coin" type="Sprite2D" parent="Control3"]
+visible = false
+position = Vector2(-120, 40)
+scale = Vector2(4, 4)
+texture = ExtResource("7_hvhgm")
+region_enabled = true
+region_rect = Rect2(32, 64, 16, 16)
+
+[node name="Control4" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Control4"]
+layout_mode = 0
+offset_left = -26.0
+offset_right = 26.0
+offset_bottom = 27.0
+text = "time"
+label_settings = ExtResource("8_bjwgt")
+script = ExtResource("7_23gc8")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

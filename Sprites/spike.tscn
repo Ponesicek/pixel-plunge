@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://du6rvymabx8je"]
+
+[ext_resource type="Script" path="res://code/tag.gd" id="1_tnyna"]
+[ext_resource type="Texture2D" uid="uid://jjoltp3gcrni" path="res://Sprites/monochrome_tilemap_transparent_packed.png" id="2_45xrb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_degwm"]
+size = Vector2(12, 8)
+
+[node name="spike" type="StaticBody2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_tnyna")
+tag = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_degwm")
+debug_color = Color(0.960784, 0, 0.505882, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_45xrb")
+region_enabled = true
+region_rect = Rect2(48, 144, 16, 16)

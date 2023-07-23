@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7ptled1v75lp"]
+
+[ext_resource type="Texture2D" uid="uid://cyyoqqywqx01b" path="res://Sprites/button_mobile.png" id="1_v36ls"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left" type="TouchScreenButton" parent="."]
+position = Vector2(10, 504)
+scale = Vector2(5.1875, 5.1875)
+texture_normal = ExtResource("1_v36ls")
+action = "ui_left"

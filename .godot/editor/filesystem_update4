@@ -1,0 +1,14 @@
+res://levels/12.tscn
+res://scence/1bittileset.tres
+res://scence/hitbox.tscn
+res://enemies/knightslime.tscn
+res://scence/projectile.tscn
+res://scence/button.tscn
+res://levels/4.tscn
+res://scence/turret.tscn
+res://scence/elturret.tscn
+res://scence/fireball.tscn
+res://scence/player.tscn
+res://Sprites/Spring.tscn
+res://UI/end_screen.tscn
+res://UI/UI.tscn

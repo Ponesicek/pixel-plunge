@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://fgd75qq7i6hw"]
+
+[ext_resource type="Script" path="res://code/tag.gd" id="1_biha8"]
+[ext_resource type="Script" path="res://enemies/knightslime.gd" id="1_wlvo5"]
+[ext_resource type="Texture2D" uid="uid://bbx05obxl8jq6" path="res://Sprites/knightslime.png" id="2_6wh6k"]
+[ext_resource type="Script" path="res://enemies/bossdeath.gd" id="4_nsstb"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_cs5c1"]
+b = Vector2(64, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rfjfs"]
+a = Vector2(-32, 8)
+b = Vector2(32, 8)
+
+[node name="knightslime" type="CharacterBody2D"]
+script = ExtResource("1_wlvo5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-32, 23.079)
+shape = SubResource("SegmentShape2D_cs5c1")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_biha8")
+tag = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(0, -0.950001)
+scale = Vector2(1, 1.049)
+polygon = PackedVector2Array(-8, -8, 8, -8, 24, 0, 32, 16, 32, 24, -32, 24, -24, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6wh6k")
+
+[node name="delay" type="Timer" parent="."]
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+script = ExtResource("4_nsstb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("SegmentShape2D_rfjfs")
+
+[connection signal="timeout" from="delay" to="." method="select"]
+[connection signal="area_entered" from="Area2D2" to="Area2D2" method="_on_area_entered"]

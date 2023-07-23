@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cye31hv0ctpt"]
+
+[ext_resource type="FontFile" uid="uid://bupyxn6ysm6om" path="res://fonts/Kenney Blocks.ttf" id="1_todye"]
+
+[resource]
+default_font = ExtResource("1_todye")

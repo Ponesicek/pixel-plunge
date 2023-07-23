@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://cygdpgvl3ls8n"]
+
+[ext_resource type="Script" path="res://code/electro_box.gd" id="1_fhy50"]
+[ext_resource type="Script" path="res://code/tag.gd" id="2_gvguj"]
+[ext_resource type="TileSet" uid="uid://crd05d8eb2kkb" path="res://scence/1bittileset.tres" id="2_u1u4w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yxe8"]
+size = Vector2(32, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nge1x"]
+size = Vector2(30.5, 1)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+scale = Vector2(1, 1.2)
+script = ExtResource("1_fhy50")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_u1u4w")
+format = 2
+layer_0/tile_data = PackedInt32Array(-131072, 1245186, 17, -65536, 1245186, 18, 0, 1245186, 19, -65537, 1114114, 17, -1, 1114114, 18, 65535, 1114114, 19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8.33333)
+shape = SubResource("RectangleShape2D_2yxe8")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_gvguj")
+tag = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 15.355)
+shape = SubResource("RectangleShape2D_nge1x")
+debug_color = Color(0.960784, 0, 0.509804, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -31.505)
+shape = SubResource("RectangleShape2D_nge1x")
+debug_color = Color(0.960784, 0, 0.509804, 0.419608)
