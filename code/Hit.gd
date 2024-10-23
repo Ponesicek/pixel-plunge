@@ -52,8 +52,9 @@ func JumpAbilityPad(body):
 
 func death(body):
 	print(body)
-	get_tree().reload_current_scene()
 	add_death()
+	get_tree().reload_current_scene()
+	
 
 func setkey(body):
 	get_parent().get_parent().get_node("UI").get_node("Control3").get_node("Key").visible = true

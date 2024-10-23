@@ -18,4 +18,3 @@ static func load_savegame() -> Resource:
 	if ResourceLoader.exists(SAVE_GAME_PATH):
 		return load(SAVE_GAME_PATH)
 	return null
-

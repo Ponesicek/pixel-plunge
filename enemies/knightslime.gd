@@ -51,7 +51,3 @@ func spawnprojectile():
 
 func delay(x = 1):
 	$delay.start(x)
-
-
-
-

@@ -28,4 +28,3 @@ func _on_pressed_RestartLevel():
 	get_tree().paused = false
 	get_parent().get_parent().get_parent().queue_free()
 	get_tree().reload_current_scene()
-

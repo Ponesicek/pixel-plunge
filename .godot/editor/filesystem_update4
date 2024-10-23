@@ -12,3 +12,4 @@ res://scence/player.tscn
 res://Sprites/Spring.tscn
 res://UI/end_screen.tscn
 res://UI/UI.tscn
+res://code/Hit.gd

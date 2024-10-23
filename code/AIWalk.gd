@@ -47,4 +47,3 @@ func _physics_process(delta):
 	
 	$AnimatedSprite2D.play()
 	move_and_slide()
-
